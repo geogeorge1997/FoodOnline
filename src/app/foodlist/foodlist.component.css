@@ -1,0 +1,18 @@
+.foods {
+    background-color: white;
+    font-size: large;
+}
+
+.foodname {
+    font-size: xx-large
+}
+
+.foodprice {
+    font-size: large;
+}
+
+.foodbox {
+    width: 500px;
+    height: 200px;
+    color: orangered;
+}

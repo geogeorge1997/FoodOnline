@@ -1,0 +1,16 @@
+<div *ngIf="orderlist.length > 0; else noOrder">
+
+    <div class="orders">
+        <div *ngFor="let order of orderlist;let i = index" style="padding: 1rem;">
+          <button [class.selected]="order === orderedFood" type="button" (click)="onSelect(order,i)" class="orderbox">
+            <br class="ordername">{{order.foodname}}
+            <br class="orderprice">Price : {{order.foodprice}}
+          </button>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #noOrder>
+    <h3>No Orders</h3>
+</ng-template>

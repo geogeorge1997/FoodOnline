@@ -1,0 +1,16 @@
+<div *ngIf="foodlist.length > 0; else noFoodlist">
+
+    <div class="foods">
+        <div *ngFor="let food of foodlist;let i = index" style="padding: 1rem;">
+          <button [class.selected]="food === selectedFood" type="button" (click)="onSelect(food,i)" class="foodbox">
+            <br class="foodname">{{food.name}}
+            <br class="foodprice">Price : {{food.price}}
+          </button>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #noFoodlist>
+    <h3>Sorry</h3>
+</ng-template>
