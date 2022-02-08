@@ -1,4 +1,6 @@
 export interface FoodList {
     name?:string,
-    price?:number
+    price?:number,
+    dTime?:number,
+    quantity?:number
 }

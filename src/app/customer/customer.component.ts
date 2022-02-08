@@ -11,9 +11,6 @@ import { CustomerService } from './service/customer.service';
 })
 export class CustomerComponent implements OnInit {
 
-  //orderlist: Observable<Order[]> | undefined
-  //customer: Observable<Customer[]> | undefined 
-
   orderlist: Order[] = [];
   customer: Customer[] = [];
 
@@ -28,21 +25,12 @@ export class CustomerComponent implements OnInit {
     })
     this.customerService.getCustomerOrder().subscribe(data=>{
       this.orderlist=data
-      console.log(this.orderlist)
+      console.log(this.orderlist[1].foodlist)
     })
-    /*
-    this.customer.subscribe(data=>{
-      console.log(data)
-    })
-    this.orderlist.subscribe(data=>{
-      console.log(data)
-    })
-    */
   }
 
   onSelect(order: Order,i:number): void {
     console.log(order,i)
-    //this.orderedFood = food;
   }
 
 }

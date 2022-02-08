@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Order } from '../interface/order';
 import { LoginService } from '../service/login.service';
@@ -12,23 +12,24 @@ import { DatePipe } from '@angular/common'
   styleUrls: ['./myorder.component.css']
 })
 export class MyorderComponent implements OnInit {
-  // state$: Observable<object> | undefined;
-  foodname:string=''
-  foodprice:number=0
-  quantity:number=1
+
+  foodlist:[]=[]
   totalPrice:number=0
   orderid:string=''
   useremail:string=''
   date:Date | undefined
+  status:string = 'Placed'
+  dTime:number=0
 
   order:Order={
-    foodname:'',
-    foodprice:0,
-    quantity:1,
+    foodlist:[    
+    ],
     totalPrice:0,
-    orderid:'',
+    orderId:'',
     useremail:'',
-    date:new Date()
+    date:new Date(),
+    status:'',
+    dTime:0
   }
 
   constructor(
@@ -40,36 +41,34 @@ export class MyorderComponent implements OnInit {
   ngOnInit(): void {
     
     this.useremail=this.loginService.userEmail()
-    console.log(this.useremail)
-
-    if(history.state.selectedFood){
-      this.foodname=history.state.selectedFood.name
-      this.foodprice=history.state.selectedFood.price
-      this.totalPrice = this.quantity*this.foodprice
+    if(history.state.foodlist.length>0){
+      console.log(history.state.foodlist)
+      this.foodlist=history.state.foodlist
+      this.totalPrice=history.state.totalPrice
+      this.dTime=history.state.totalTime
     }
     else{
       this.router.navigate(['foodlist'])
     }
-    console.log(this.foodname,this.foodprice)
+    console.log(this.foodlist,this.totalPrice,this.dTime)
     
-  }
-
-  didModify() {
-    this.totalPrice = this.quantity*this.foodprice
   }
 
   submitted = false;
 
   onSubmit() { 
-    this.order.foodname=this.foodname
-    this.order.foodprice=this.foodprice
-    this.order.quantity=this.quantity
+    this.order.foodlist=this.foodlist
+    this.order.dTime=this.dTime
     this.order.totalPrice=this.totalPrice
     this.order.useremail=this.useremail
     this.order.date=new Date()
-    let _date =this.datepipe.transform(this.order.date, 'M/d/yyyy-h:mm-a')
-    this.order.orderid=this.useremail+'-'+_date
+    this.order.status = this.status
+    //let _date =this.datepipe.transform(this.order.date, 'M/d/yyyy-h:mm-a')
     this.submitted = true;
     this.myOrderService.submitOrder(this.order)
+   }
+
+   ngOnDestroy(){
+     console.log("Destroyed")
    }
 }

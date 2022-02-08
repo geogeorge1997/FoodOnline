@@ -13,10 +13,6 @@ export class CustomerService {
 
   private orderlistColName = 'OrderList'
   private customerCollection = 'Customers'
-
-  //orderlistCollection!: AngularFirestoreCollection<Order>;
-
-
   public email:string=''
 
   constructor(
@@ -34,6 +30,6 @@ export class CustomerService {
   getCustomerOrder(): Observable<Order[]> {
 
     return this.fireStore.collection<Order>(this.orderlistColName,
-      ref=>ref.where('useremail','==',this.email)).valueChanges()
+      ref=>ref.where('useremail','==',this.email).where('status','==','Confirmed')).valueChanges()
   }
 }

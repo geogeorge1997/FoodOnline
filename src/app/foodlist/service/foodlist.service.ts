@@ -10,13 +10,10 @@ import { Observable } from 'rxjs';
 export class FoodlistService {
 
   private foodlistColName = 'FoodList'
-  myArray: any;
-  foodListCollection!: AngularFirestoreCollection<FoodList>;
   foodlist: Observable<FoodList[]> | undefined
 
   constructor(
     public firestore:AngularFirestore) {
-      // this.foodListCollection = this.firestore.collection()
       this.foodlist = this.firestore.collection<FoodList>(this.foodlistColName).valueChanges()
       console.log(this.foodlist)
    }

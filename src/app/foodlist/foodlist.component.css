@@ -1,18 +1,17 @@
-.foods {
-    background-color: white;
+.order-button {
+    width: 300px;
+    height: 50px;
+    background-color:black;
+    color: white;
     font-size: large;
+    padding: 1rem;
 }
 
-.foodname {
-    font-size: xx-large
-}
-
-.foodprice {
-    font-size: large;
-}
-
-.foodbox {
-    width: 500px;
-    height: 200px;
-    color: orangered;
-}
+.example-card {
+    max-width: 300px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }

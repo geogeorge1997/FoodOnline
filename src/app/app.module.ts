@@ -21,6 +21,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database'
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { LoginService } from './service/login.service';
+import { FoodlistService } from './foodlist/service/foodlist.service';
+import { CustomerService } from './customer/service/customer.service';
+import { MyorderService } from './myorder/service/myorder.service';
 
 
 @NgModule({
@@ -43,7 +47,13 @@ import { DatePipe } from '@angular/common';
     AngularFireDatabaseModule,
     FormsModule
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    LoginService,
+    FoodlistService,
+    CustomerService,
+    MyorderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

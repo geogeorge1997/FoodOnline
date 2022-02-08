@@ -1,6 +1,9 @@
-<div class="container">
+<mat-card class="example-card">
+  <mat-card-header>
+         <mat-card-title>Register</mat-card-title>
+  </mat-card-header>
 
-    <h1>Register Form</h1>
+  <mat-card-content>
     <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
 
       <div class="form-group">
@@ -29,6 +32,11 @@
   
       <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid">Submit</button>
     </form>
+  </mat-card-content>
 
-    <button class="btn btn-success" (click)="onLogin()">Login</button>
-</div>
+  <mat-card-actions>
+    <h3>
+      <button class="btn btn-success" (click)="onLogin()">Login</button>
+    </h3>
+  </mat-card-actions>
+</mat-card>

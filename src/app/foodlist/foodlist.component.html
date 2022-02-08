@@ -1,16 +1,34 @@
 <div *ngIf="foodlist.length > 0; else noFoodlist">
 
-    <div class="foods">
-        <div *ngFor="let food of foodlist;let i = index" style="padding: 1rem;">
-          <button [class.selected]="food === selectedFood" type="button" (click)="onSelect(food,i)" class="foodbox">
-            <br class="foodname">{{food.name}}
-            <br class="foodprice">Price : {{food.price}}
-          </button>
-        </div>
-    </div>
+<div *ngFor="let food of foodlist;let i = index" style="padding: 1rem;">
+
+       <mat-card class="example-card">
+              <mat-card-header>
+                     <mat-card-title>{{food.name}}</mat-card-title>
+              </mat-card-header>
+              <img mat-card-image 
+                     src="https://media.istockphoto.com/photos/restaurant-plates-picture-id104704117?b=1&k=20&m=104704117&s=170667a&w=0&h=ey87ESdQq9Gv0r_hmTuVLpF9H1hb0S3xcOBVOSWcZiw=">
+              <mat-card-content>
+                     <h2>Price : {{food.price}} / Item</h2>
+                     <h2>Time  : {{food.dTime}} Mins</h2>
+                     <p>
+                     ......................................
+                     </p>
+              </mat-card-content>
+
+              <h3>
+                     Quantity :
+                     <input type="number" class="form-control" id="quantity" (input)="didModify(food)"
+                     [(ngModel)]="food.quantity" name="quantity">
+              </h3>
+       </mat-card>
+
+</div>
+
+<button type="button" (click)="onSelect()" class="order-button">Order</button>
 
 </div>
 
 <ng-template #noFoodlist>
-    <h3>Sorry</h3>
+<h3>Food is not available at the moment</h3>
 </ng-template>

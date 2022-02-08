@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Order } from 'src/app/interface/order';
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class MyorderService {
 
   private orderlistColName = 'OrderList'
-  orderlistCollection!: AngularFirestoreCollection<Order>;
   orderlist: Observable<Order[]> | undefined
 
   constructor(
@@ -16,8 +15,9 @@ export class MyorderService {
   ) { }
 
   submitOrder(order:Order){
-    this.fireStore.collection(this.orderlistColName).add(order)
-    console.log(order)
+    const docId = this.fireStore.createId()
+    order.orderId=docId
+    this.fireStore.collection(this.orderlistColName).doc(docId).set(order)
     this.getOrdersLastMinute()
 
   }
@@ -27,13 +27,17 @@ export class MyorderService {
     var fiveMinuteAgo = new Date( Date.now() - 1000 * 60 * 5 );
 
     this.orderlist = this.fireStore.collection<Order>(this.orderlistColName,
-      ref=>ref.where('date','>=',fiveMinuteAgo)).valueChanges()
+      ref=>ref.where('date','>=',fiveMinuteAgo).where('status','==','Placed')).valueChanges()
 
-    // console.log(this.orderlistCollection.valueChanges())
+   
     this.orderlist?.subscribe(data=>{
-      console.log(data)
+      for(let i=0;i<data.length;i++){
+        console.log(data.length)
+        console.log(data[i])
+        this.fireStore.collection<Order>(this.orderlistColName).doc(data[i].orderId).update({status:'Confirmed'})
+      }
     })
+    
 
-    // const allCapitalsRes = await citiesRef.
   }
 }

@@ -1,9 +1,12 @@
+import { FoodList } from "./foodlist";
+
 export interface Order {
-    foodname:string,
-    foodprice:number,
-    quantity:number,
+    foodlist:FoodList[
+    ],
     totalPrice:number,
-    orderid:string,
+    orderId:string,
     useremail:string,
-    date:Date
+    date:Date,
+    status:string,
+    dTime:number
 }
