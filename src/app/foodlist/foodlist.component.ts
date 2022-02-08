@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FoodList } from '../interface/foodlist';
-import { LoginService } from '../service/login.service';
 import { FoodlistService } from './service/foodlist.service';
 
 @Component({
@@ -54,7 +53,7 @@ export class FoodlistComponent implements OnInit {
         this.totalTime = this.foods[i].dTime
       }
     }
-    console.log(this.totalPrice,this.totalTime)
+    // console.log(this.totalPrice,this.totalTime)
 
     this.router.navigateByUrl('/myorder', {
       state: {

@@ -21,16 +21,16 @@ export class CustomerComponent implements OnInit {
   ngOnInit(): void {
     this.customerService.getCustomerDetails().subscribe(data=>{
       this.customer=data
-      console.log(this.customer)
+      // console.log(this.customer)
     })
     this.customerService.getCustomerOrder().subscribe(data=>{
       this.orderlist=data
-      console.log(this.orderlist[1].foodlist)
+      // console.log(this.orderlist[1].foodlist)
     })
   }
 
   onSelect(order: Order,i:number): void {
-    console.log(order,i)
+    // console.log(order,i)
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Order } from 'src/app/interface/order';
-import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
+import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,7 @@ export class MyorderService {
     const docId = this.fireStore.createId()
     order.orderId=docId
     this.fireStore.collection(this.orderlistColName).doc(docId).set(order)
-    this.getOrdersLastMinute()
-
+    // this.getOrdersLastMinute()
   }
 
   async getOrdersLastMinute(){
@@ -32,8 +31,8 @@ export class MyorderService {
    
     this.orderlist?.subscribe(data=>{
       for(let i=0;i<data.length;i++){
-        console.log(data.length)
-        console.log(data[i])
+        //console.log(data.length)
+        //console.log(data[i])
         this.fireStore.collection<Order>(this.orderlistColName).doc(data[i].orderId).update({status:'Confirmed'})
       }
     })

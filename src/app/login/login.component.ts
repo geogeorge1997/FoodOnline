@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() { 
     this.submitted = true;
-    console.log(this.email,this.password)
+    // console.log(this.email,this.password)
     this.loginService.login(this.email,this.password)
    }
 

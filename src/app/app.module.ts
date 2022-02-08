@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+// import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +27,11 @@ import { CustomerService } from './customer/service/customer.service';
 import { MyorderService } from './myorder/service/myorder.service';
 
 
+import { URL as DATABASE_URL } from '@angular/fire/compat/database';
+import { ORIGIN as FUNCTIONS_ORIGIN } from '@angular/fire/compat/functions';
+import { SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/compat/firestore';
+import { NgModule } from '@angular/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +57,14 @@ import { MyorderService } from './myorder/service/myorder.service';
     LoginService,
     FoodlistService,
     CustomerService,
-    MyorderService
+    MyorderService,
+
+    {
+      provide: DATABASE_URL,
+      useValue: environment.useEmulators ? `http://localhost:9000?ns=${environment.firebaseConfig.projectId}` : undefined
+    },
+    { provide: FIRESTORE_SETTINGS, useValue: environment.useEmulators ? { host: 'localhost:8080', ssl: false } : {} },
+    { provide: FUNCTIONS_ORIGIN, useValue: environment.useEmulators ? 'http://localhost:5001' : undefined },
   ],
   bootstrap: [AppComponent]
 })

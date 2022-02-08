@@ -42,7 +42,7 @@ export class MyorderComponent implements OnInit {
     
     this.useremail=this.loginService.userEmail()
     if(history.state.foodlist.length>0){
-      console.log(history.state.foodlist)
+      // console.log(history.state.foodlist)
       this.foodlist=history.state.foodlist
       this.totalPrice=history.state.totalPrice
       this.dTime=history.state.totalTime
@@ -50,7 +50,7 @@ export class MyorderComponent implements OnInit {
     else{
       this.router.navigate(['foodlist'])
     }
-    console.log(this.foodlist,this.totalPrice,this.dTime)
+    // console.log(this.foodlist,this.totalPrice,this.dTime)
     
   }
 
@@ -66,9 +66,10 @@ export class MyorderComponent implements OnInit {
     //let _date =this.datepipe.transform(this.order.date, 'M/d/yyyy-h:mm-a')
     this.submitted = true;
     this.myOrderService.submitOrder(this.order)
+    this.router.navigate(['customer'])
    }
 
    ngOnDestroy(){
-     console.log("Destroyed")
+     // console.log("Destroyed")
    }
 }
