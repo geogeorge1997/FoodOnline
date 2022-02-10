@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service';
+import { SplashService } from '../spash-screen/service/splash.service';
 
 @Component({
   selector: 'app-login',
@@ -14,16 +15,14 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService:LoginService,
-    private router: Router) { }
+    private router: Router,
+    private splashService : SplashService) { }
 
   ngOnInit(): void {
+    this.splashService.setSplashStatus(false)
   }
 
-  submitted = false;
-
   onSubmit() { 
-    this.submitted = true;
-    // console.log(this.email,this.password)
     this.loginService.login(this.email,this.password)
    }
 

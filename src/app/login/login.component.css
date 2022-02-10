@@ -1,3 +1,23 @@
 .example-card {
-    max-width: 300px;
+    width: 350px;
   }
+
+.flex-container {
+  margin: 1rem;
+  background:whitesmoke;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center; 
+}
+
+.submit-button {
+  width: 300px;
+  height: 50px;
+  background-color:black;
+  color: white;
+  font-size: large;
+  padding: 1rem;
+}

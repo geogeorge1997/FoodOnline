@@ -1,51 +1,59 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>{{customer[0]?.name}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-        <h2>Adress : {{customer[0]?.address}}</h2>
-        <h2>Email  : {{customer[0]?.email}}</h2>
-    <p>
-      ......................................
-    </p>
-  </mat-card-content>
+<div class="flex-container">
 
-</mat-card>
-
-<div *ngIf="orderlist.length > 0; else noOrder">
-
-  <br>
-
-    <div class="orders">
-      <h1>My Orders</h1>
-        <div *ngFor="let order of orderlist;let i = index" style="padding: 1rem;">
-
-          <mat-card class="example-card">
-
-            <mat-card-content>
-                  <h3>Order Id : {{order.orderId}}</h3>
-                  <div *ngFor="let food of order.foodlist">
-                    <h3>Item : {{food?.quantity}} * {{food?.name}}</h3>
-                  </div>
-                  <h3>Total Price : {{order.totalPrice}}</h3>
-                  <h3>Time : {{order.dTime}} Mins</h3>
-                  <h3>Status : {{order.status}}</h3>
-              <p>
-                ......................................
-              </p>
-            </mat-card-content>
-            
-            <mat-card-actions>
-              <button [class.selected]="order === orderedFood" type="button" (click)="onSelect(order,i)" class="orderbox"></button>
-            </mat-card-actions>
+  <div style="padding-top: 1rem;"></div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{customer[0]?.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+          <h2>Adress : {{customer[0]?.address}}</h2>
+          <h2>Email  : {{customer[0]?.email}}</h2>
+      <p>
+        ......................................
+      </p>
+    </mat-card-content>
+  
+  </mat-card>
+  
+  <div *ngIf="orderlist.length > 0; else noOrder">
+  
+    <br>
+  
+      <div class="orders">
+        <h1 style="text-align: center;">My Orders</h1>
+        <cdk-virtual-scroll-viewport [itemSize]="1" class="orders-container">
+          <div *cdkVirtualFor="let order of orderlist;let i = index" style="padding: 1rem;">
           
-          </mat-card>
+            <mat-card class="example-card">
         
-        </div>
-    </div>
+              <mat-card-content>
+                    <h3>Order Id : {{order.orderId}}</h3>
+                    <div *ngFor="let food of order.foodlist">
+                      <h3>Item : {{food?.quantity}} * {{food?.name}}</h3>
+                    </div>
+                    <h3>Total Price : {{order.totalPrice}}</h3>
+                    <h3>Time : {{order.dTime}} Mins</h3>
+                    <h3>Status : {{order.status}}</h3>
+                <p>
+                  ......................................
+                </p>
+              </mat-card-content>
+              
+              <mat-card-actions>
+                <button [class.selected]="order === orderedFood" type="button" (click)="onSelect(order,i)" class="orderbox"></button>
+              </mat-card-actions>
+            
+            </mat-card>
+          
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+  
+  </div>
+  
+  <ng-template #noOrder>
+      <h3>No Orders</h3>
+  </ng-template>
 
 </div>
 
-<ng-template #noOrder>
-    <h3>No Orders</h3>
-</ng-template>

@@ -16,27 +16,27 @@ export class FoodlistService {
       /*
       const array = [
         {
-          name: 'Item A',
+          name: 'Bread',
           price: 35,
           dTime: 10,
           quantity: 0
         },{
-          name: 'Item B',
+          name: 'Cake',
           price: 45,
           dTime: 15,
           quantity: 0
         },{
-          name: 'Item C',
+          name: 'Ice Cream',
           price: 55,
           dTime: 5,
           quantity: 0
         },{
-          name: 'Item D',
+          name: 'CupCake',
           price: 50,
           dTime: 12,
           quantity: 0
         },{
-          name: 'Item E',
+          name: 'Bun',
           price: 70,
           dTime: 19,
           quantity: 0

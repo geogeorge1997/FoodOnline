@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
 import { Order } from '../interface/order';
 import { LoginService } from '../service/login.service';
 import { MyorderService } from './service/myorder.service';
@@ -42,16 +41,13 @@ export class MyorderComponent implements OnInit {
     
     this.useremail=this.loginService.userEmail()
     if(history.state.foodlist.length>0){
-      // console.log(history.state.foodlist)
       this.foodlist=history.state.foodlist
       this.totalPrice=history.state.totalPrice
       this.dTime=history.state.totalTime
     }
     else{
       this.router.navigate(['foodlist'])
-    }
-    // console.log(this.foodlist,this.totalPrice,this.dTime)
-    
+    }    
   }
 
   submitted = false;

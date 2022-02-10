@@ -1,16 +1,10 @@
-<!--
-  <mat-tab-group mat-align-tabs="center">
-  <mat-tab label="Customer"></mat-tab>
-  <mat-tab label="Food List">Content 2</mat-tab>
-  <mat-tab label="My Order">Content 3</mat-tab>
-</mat-tab-group>
--->
 
-<ul>
+<ul style="display: flex;flex-direction: row;justify-content: center;">
   <li><a [routerLink]='["/login"]' routerLinkActive="active">Login</a></li>
   <li><a [routerLink]='["/customer"]' routerLinkActive="active">Customer</a></li>
   <li><a [routerLink]='["/foodlist"]' routerLinkActive="active">Food List</a></li>
   <li><a [routerLink]='["/myorder"]' routerLinkActive="active">My Order</a></li>
 </ul>
 
+<app-spash-screen></app-spash-screen>
 <router-outlet></router-outlet>

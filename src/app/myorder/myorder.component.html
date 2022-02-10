@@ -1,19 +1,25 @@
-<div class="container">
+<div class="flex-container">
 
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Order</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-          <h2>Total Price : {{totalPrice}}</h2>
-          <h2>Time  : {{dTime}} Mins</h2>
-      <p>
-        ......................................
-      </p>
-    </mat-card-content>
+  <div class="container">
 
-  </mat-card>
-
-  <button type="button" (click)="onSubmit()" class="order-button">Submit</button>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Order</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+            <h2>Total Price : {{totalPrice}}</h2>
+            <h2>Time  : {{dTime}} Mins</h2>
+        <p>
+          ......................................
+        </p>
+      </mat-card-content>
   
+    </mat-card>
+  
+    <div class="button-container">
+      <button type="button" (click)="onSubmit()" class="order-button">Submit</button>
+    </div>
+    
+  </div>
+
 </div>

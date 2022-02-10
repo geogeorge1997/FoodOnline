@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FoodList } from '../interface/foodlist';
+import { SplashService } from '../spash-screen/service/splash.service';
 import { FoodlistService } from './service/foodlist.service';
 
 @Component({
@@ -15,12 +16,16 @@ export class FoodlistComponent implements OnInit {
   totalPrice:number = 0
   totalTime:number =0
 
-  constructor(private foodlistServie:FoodlistService,
-    private router:Router) { }
+  constructor(
+    private foodlistServie:FoodlistService,
+    private router:Router,
+    private splashService: SplashService) { }
 
   ngOnInit(): void {
+    this.splashService.setSplashStatus(true)
     this.foodlistServie.getFoodList()?.subscribe(foodlist=>{
       this.foodlist=foodlist
+      this.splashService.setSplashStatus(false)
     })
   }
 
@@ -53,7 +58,6 @@ export class FoodlistComponent implements OnInit {
         this.totalTime = this.foods[i].dTime
       }
     }
-    // console.log(this.totalPrice,this.totalTime)
 
     this.router.navigateByUrl('/myorder', {
       state: {

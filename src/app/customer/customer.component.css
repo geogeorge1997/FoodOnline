@@ -1,13 +1,31 @@
 .order-button {
-    width: 300px;
+    width: 400px;
     height: 50px;
-    background-color:black;
+    background-color:#000000;
     color: white;
     font-size: large;
     padding: 1rem;
 }
 
 .example-card {
-    max-width: 300px;
+    width: 350px;
+}
+
+.flex-container {
+    margin: 1rem;
+    background:whitesmoke;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.orders-container {
+    height: 500px;
+    width: 350px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
-  

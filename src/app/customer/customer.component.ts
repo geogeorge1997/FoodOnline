@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Customer } from '../interface/customer';
 import { Order } from '../interface/order';
+import { SplashService } from '../spash-screen/service/splash.service';
 import { CustomerService } from './service/customer.service';
 
 @Component({
@@ -16,21 +16,24 @@ export class CustomerComponent implements OnInit {
 
   orderedFood?: Order
 
-  constructor(private customerService:CustomerService) { }
+  constructor(
+    private customerService: CustomerService,
+    private splashService: SplashService) { }
 
   ngOnInit(): void {
+    this.splashService.setSplashStatus(true)
     this.customerService.getCustomerDetails().subscribe(data=>{
       this.customer=data
-      // console.log(this.customer)
+      this.splashService.setSplashStatus(false)
     })
+    this.splashService.setSplashStatus(true)
     this.customerService.getCustomerOrder().subscribe(data=>{
       this.orderlist=data
-      // console.log(this.orderlist[1].foodlist)
+      this.splashService.setSplashStatus(false)
     })
   }
 
   onSelect(order: Order,i:number): void {
     // console.log(order,i)
   }
-
 }

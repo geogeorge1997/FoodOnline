@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { CustomerComponent } from './customer/customer.component';
 import { FoodlistComponent } from './foodlist/foodlist.component';
 import { MyorderComponent } from './myorder/myorder.component';
+import { SpashScreenComponent } from './spash-screen/spash-screen.component';
 
 import { MaterialModule } from "./material.module";
 
@@ -26,11 +27,12 @@ import { FoodlistService } from './foodlist/service/foodlist.service';
 import { CustomerService } from './customer/service/customer.service';
 import { MyorderService } from './myorder/service/myorder.service';
 
-
 import { URL as DATABASE_URL } from '@angular/fire/compat/database';
 import { ORIGIN as FUNCTIONS_ORIGIN } from '@angular/fire/compat/functions';
 import { SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/compat/firestore';
 import { NgModule } from '@angular/core';
+import { SplashService } from './spash-screen/service/splash.service';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { NgModule } from '@angular/core';
     RegisterComponent,
     CustomerComponent,
     FoodlistComponent,
-    MyorderComponent
+    MyorderComponent,
+    SpashScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { NgModule } from '@angular/core';
     FoodlistService,
     CustomerService,
     MyorderService,
+    SplashService,
 
     {
       provide: DATABASE_URL,

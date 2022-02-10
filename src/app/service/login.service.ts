@@ -1,8 +1,8 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { Router } from '@angular/router';
 
 import { Customer } from "../interface/customer";
 
@@ -16,7 +16,6 @@ export class LoginService {
   private customerCollection = 'Customers'
 
   constructor(
-    private ngZone:NgZone,
     private router:Router,
     public fireAuth:AngularFireAuth,
     public fireStore:AngularFirestore) { }
@@ -29,26 +28,24 @@ export class LoginService {
     return this.isloggedIn;
   }
 
-  async login(email:string,password:string){
-    var result =  await this.fireAuth.signInWithEmailAndPassword(email,password)
+  login(email:string,password:string){
+    this.fireAuth.signInWithEmailAndPassword(email,password)
     .then((result) => {
       this.router.navigate(['customer']);
       this.email=email
       this.isloggedIn=true
-      // console.log(result)
     }).catch((error) => {
       this.isloggedIn=false
       window.alert(error.message)
     })    
   }
 
-  async register(customer:Customer){
+  register(customer:Customer){
     const email=customer.email
     const password=customer.password
-    var result = await this.fireAuth.createUserWithEmailAndPassword(email,password)
+    this.fireAuth.createUserWithEmailAndPassword(email,password)
     .then((result)=>{
       this.fireStore.collection(this.customerCollection).add(customer)
-      // console.log('Success')
       this.router.navigate(['customer'])
       this.email=email
       this.isloggedIn=true
