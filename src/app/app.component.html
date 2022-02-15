@@ -1,10 +1,21 @@
 
-<ul style="display: flex;flex-direction: row;justify-content: center;">
-  <li><a [routerLink]='["/login"]' routerLinkActive="active">Login</a></li>
-  <li><a [routerLink]='["/customer"]' routerLinkActive="active">Customer</a></li>
-  <li><a [routerLink]='["/foodlist"]' routerLinkActive="active">Food List</a></li>
-  <li><a [routerLink]='["/myorder"]' routerLinkActive="active">My Order</a></li>
-</ul>
+<div *ngIf="loginVal; else logoutTem">
+  <ul style="display: flex;flex-direction: row;justify-content: center;">
+    <li><a [routerLink]='["/login"]' routerLinkActive="active">Login</a></li>
+    <li><a [routerLink]='["/customer"]' routerLinkActive="active">Customer</a></li>
+    <li><a [routerLink]='["/foodlist"]' routerLinkActive="active">Food List</a></li>
+    <li><a [routerLink]='["/myorder"]' routerLinkActive="active">My Order</a></li>
+  </ul>
+</div>
+
+<ng-template #logoutTem>
+  <ul style="display: flex;flex-direction: row;justify-content: center;">
+    <li><a [routerLink]='["/logout"]' routerLinkActive="active">Logout</a></li>
+    <li><a [routerLink]='["/customer"]' routerLinkActive="active">Customer</a></li>
+    <li><a [routerLink]='["/foodlist"]' routerLinkActive="active">Food List</a></li>
+    <li><a [routerLink]='["/myorder"]' routerLinkActive="active">My Order</a></li>
+  </ul>
+</ng-template>
 
 <app-spash-screen></app-spash-screen>
 <router-outlet></router-outlet>

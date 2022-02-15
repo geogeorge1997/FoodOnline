@@ -32,6 +32,7 @@ import { ORIGIN as FUNCTIONS_ORIGIN } from '@angular/fire/compat/functions';
 import { SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/compat/firestore';
 import { NgModule } from '@angular/core';
 import { SplashService } from './spash-screen/service/splash.service';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { SplashService } from './spash-screen/service/splash.service';
     CustomerComponent,
     FoodlistComponent,
     MyorderComponent,
-    SpashScreenComponent
+    SpashScreenComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

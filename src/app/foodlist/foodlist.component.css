@@ -14,29 +14,50 @@
   justify-content: center; 
   position: -webkit-sticky;
   position: sticky;
-  bottom: 1rem;
-}
-
-.example-card {
-  max-width: 350px;
+  height: 10%;
+  width: 100%;
 }
 
 .flex-container {
-  margin: 1rem;
-  background:whitesmoke;
-  height: 100%;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center; 
+  height: 100%;
+  width: 98%;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
-.foods-container {
-  height: 700px;
-  width: 350px;
-  overflow-x: scroll;
+@media (max-width: 800px) and (orientation: portrait) {
+  .flex-container {
+    justify-content: space-evenly;
+  }
+}
+
+.container {
+  background:red;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   overflow-y: scroll;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  overflow-x: scroll;
+}
+
+.food-item {
+  height: 80%;
+  width: 24%;
+  padding: .5%;
+  background-color: red;
+  display: flex;
+  align-content: center;
+}
+
+@media (max-width: 800px) and (orientation: portrait) {
+  .food-item {
+    min-height: 450px;
+    width: 80%;
+    justify-content: center;
+    padding: 1rem;
+  }
 }

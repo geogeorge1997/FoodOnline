@@ -34,6 +34,7 @@ export class FoodlistComponent implements OnInit {
     var index = 0
     var del = 0
     for(var i=0;i<this.foods.length;i++){
+
       if(this.foods[i].name==food.name){
         this.foods[i]=food
         flag = 1

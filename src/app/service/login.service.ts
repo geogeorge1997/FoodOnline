@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 import { Customer } from "../interface/customer";
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,29 @@ export class LoginService {
   private email = ''
   private customerCollection = 'Customers'
 
+  loginV = new Subject<boolean>()
+
   constructor(
     private router:Router,
     public fireAuth:AngularFireAuth,
-    public fireStore:AngularFirestore) { }
+    public fireStore:AngularFirestore) {
+      fireAuth.user.subscribe((user)=>{
+        if(user!=null){
+          this.router.navigate(['customer']);
+          this.email=user.email!
+          this.setLoginStatus(false)
+          this.isloggedIn=true
+        }
+      })
+     }
+
+    getLoginStatus(): Observable<boolean>{
+      return this.loginV.asObservable()
+    }
+  
+    setLoginStatus(data:boolean){
+      this.loginV.next(data)
+    }
 
   userEmail(){
     return this.email
@@ -33,8 +53,10 @@ export class LoginService {
     .then((result) => {
       this.router.navigate(['customer']);
       this.email=email
+      this.setLoginStatus(false)
       this.isloggedIn=true
     }).catch((error) => {
+      this.setLoginStatus(true)
       this.isloggedIn=false
       window.alert(error.message)
     })    
@@ -48,10 +70,17 @@ export class LoginService {
       this.fireStore.collection(this.customerCollection).add(customer)
       this.router.navigate(['customer'])
       this.email=email
+      this.setLoginStatus(false)
       this.isloggedIn=true
     }).catch((error)=>{
       window.alert(error.message);
+      this.setLoginStatus(true)
       this.isloggedIn=false
     })
+  }
+
+  logut(){
+    this.isloggedIn=false
+    this.setLoginStatus(true)
   }
 }
